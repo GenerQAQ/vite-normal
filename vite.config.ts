@@ -1,20 +1,81 @@
-import { defineConfig } from 'vite';
+import { defineConfig, loadEnv } from 'vite';
 import vue from '@vitejs/plugin-vue';
 import eslintPlugin from 'vite-plugin-eslint';
-import { resolve } from 'path';
+import compressionPlugin from 'vite-plugin-compression';
+import path, { resolve } from 'path';
+
+const DIRNAME = path.resolve('./').split('/').pop(); // 根目录文件夹名称
+const HOST = '0.0.0.0';
+const PORT = 5173;
+const MOCKIP = '0.0.0.0';
+const MOCKPORT = 8222;
 
 // https://vitejs.dev/config/
-export default defineConfig({
-    resolve: {
-        alias: {
-            '@': resolve(__dirname, './src') // 把 @ 指向到 src 目录去
+export default defineConfig(({ mode }) => {
+    // 根据当前工作目录中的 `mode` 加载 .env 文件
+    // 设置第三个参数为 '' 来加载所有环境变量，而不管是否有 `VITE_` 前缀。
+    const env = loadEnv(mode, process.cwd(), '');
+
+    return {
+        base: './', // 开发或生产环境服务的公共基础路径
+        resolve: {
+            alias: {
+                '@': resolve(__dirname, './src') // 把 @ 指向到 src 目录去
+            }
+        },
+        plugins: [
+            vue(),
+            eslintPlugin({
+                lintOnStart: true, // 在项目启动时检查所有匹配的文件
+                cache: false // 禁用 eslint 缓存
+            }),
+            compressionPlugin({
+                verbose: true, // 输出压缩成功
+                disable: false, // 是否禁用
+                threshold: 10240, // 体积大于阈值会被压缩，单位是b
+                algorithm: 'gzip', // 压缩算法
+                ext: '.gz' // 生成的压缩包后缀
+            })
+        ],
+        server: {
+            // 在开发服务器启动时自动在浏览器中打开应用程序
+            open: true,
+            // 服务器监听地址
+            host: HOST,
+            // 服务器端口
+            port: PORT,
+            // 服务器自定义代理规则
+            proxy: {
+                [env.VITE_APP_BASE_API]: {
+                    target: `http://${MOCKIP}:${MOCKPORT}`,
+                    changeOrigin: true, // 将host header的源更改为target URL
+                    ws: true, // 用于代理 WS(S) 请求
+                    rewrite: (path) => path.replace(env.VITE_APP_BASE_API, '')
+                }
+            }
+        },
+        build: {
+            outDir: `./dist/${DIRNAME}`, // 指定输出路径（相对于项目根目录)
+            rollupOptions: {
+                output: {
+                    // 允许创建自定义共享公共块
+                    manualChunks: (id) => {
+                        // id 每个解析的模块ID
+                        if (id.includes('node_modules')) {
+                            return id.toString().split('node_modules/')[1].split('/')[0].toString();
+                        }
+                    },
+                    // 用于从入口点创建的块的打包输出格式[name]表示文件名,[hash]表示该文件内容hash值
+                    entryFileNames: 'js/[name].[hash].js',
+                    // 用于命名代码拆分时创建的共享块的输出命名
+                    chunkFileNames: 'js/[name].[hash].js',
+                    // 用于输出静态资源的命名，[ext]表示文件扩展名
+                    assetFileNames: '[ext]/[name].[hash].[ext]'
+                }
+            }
+        },
+        esbuild: {
+            drop: mode === 'production' ? ['console', 'debugger'] : [] // 删除 console.* debugger; 函数的调用
         }
-    },
-    plugins: [
-        vue(),
-        eslintPlugin({
-            lintOnStart: true, // 在项目启动时检查所有匹配的文件
-            cache: false // 禁用 eslint 缓存
-        })
-    ]
+    };
 });
