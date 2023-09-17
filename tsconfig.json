@@ -27,8 +27,20 @@
         // 非相对模块导入的路径映射配置
         "paths": {
             "@/*": ["src/*"]
-        },
-        "types": ["element-plus/global"]
+        }
+        // "types": ["element-plus/global"]
     },
+    "include": [
+        "src/**/*.ts",
+        "src/**/*.d.ts",
+        "src/**/*.tsx",
+        "src/**/*.vue",
+        "vite.config.ts",
+        ".eslintrc.cjs",
+        "auto-imports.d.ts",
+        "components.d.ts"
+    ],
+    // 编译器默认排除的编译文件
+    "exclude": ["node_modules"],
     "references": [{ "path": "./tsconfig.node.json" }]
 }
