@@ -14,10 +14,10 @@ module.exports = {
         withDefaults: true
     },
     extends: [
-        '@ecomfe/eslint-config',
-        '@ecomfe/eslint-config/vue/strict',
         'standard-with-typescript',
         'plugin:vue/vue3-essential',
+        '@ecomfe/eslint-config',
+        '@ecomfe/eslint-config/vue/strict',
         'plugin:prettier/recommended' // 使用prettier插件 必须放在最后面
     ],
     overrides: [

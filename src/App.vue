@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import HelloWorld from './components/HelloWorld.vue';
-import { Hide, View } from '@element-plus/icons-vue';
+import { Sunny, Moon } from '@element-plus/icons-vue';
 
 const toggleDark = ref(false);
 </script>
@@ -15,7 +15,7 @@ const toggleDark = ref(false);
             <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
         </a>
     </div>
-    <el-switch v-model="toggleDark" :active-action-icon="View" :inactive-action-icon="Hide" />
+    <el-switch v-model="toggleDark" :active-action-icon="Moon" :inactive-action-icon="Sunny" />
     <hello-world msg="Vite + Vue" />
 </template>
 
