@@ -3,6 +3,9 @@ import vue from '@vitejs/plugin-vue';
 import eslintPlugin from 'vite-plugin-eslint';
 import compressionPlugin from 'vite-plugin-compression';
 import path, { resolve } from 'path';
+import autoImport from 'unplugin-auto-import/vite';
+import components from 'unplugin-vue-components/vite';
+import { ElementPlusResolver as elementPlusResolver } from 'unplugin-vue-components/resolvers';
 
 const DIRNAME = path.resolve('./').split('/').pop(); // 根目录文件夹名称
 const HOST = '0.0.0.0';
@@ -35,6 +38,12 @@ export default defineConfig(({ mode }) => {
                 threshold: 10240, // 体积大于阈值会被压缩，单位是b
                 algorithm: 'gzip', // 压缩算法
                 ext: '.gz' // 生成的压缩包后缀
+            }),
+            autoImport({
+                resolvers: [elementPlusResolver()]
+            }),
+            components({
+                resolvers: [elementPlusResolver()]
             })
         ],
         server: {

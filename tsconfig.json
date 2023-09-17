@@ -27,8 +27,8 @@
         // 非相对模块导入的路径映射配置
         "paths": {
             "@/*": ["src/*"]
-        }
+        },
+        "types": ["element-plus/global"]
     },
-    "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue", "vite.config.ts", ".eslintrc.cjs"],
     "references": [{ "path": "./tsconfig.node.json" }]
 }

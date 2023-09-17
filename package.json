@@ -16,6 +16,8 @@
         ]
     },
     "dependencies": {
+        "@element-plus/icons-vue": "^2.1.0",
+        "element-plus": "^2.3.14",
         "vue": "^3.3.4"
     },
     "devDependencies": {
@@ -37,6 +39,8 @@
         "lint-staged": "^14.0.1",
         "prettier": "^3.0.3",
         "typescript": "^5.2.2",
+        "unplugin-auto-import": "^0.16.6",
+        "unplugin-vue-components": "^0.25.2",
         "vite": "^4.4.9",
         "vite-plugin-compression": "^0.5.1",
         "vite-plugin-eslint": "^1.8.1",
