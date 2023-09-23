@@ -1,15 +1,23 @@
 ## 配置
 * 🚀 [Vue 3](https://cn.vuejs.org/)，[Vite 4](https://cn.vitejs.dev/)，[PNPM](https://pnpm.io/)
 * 👍 [TypeScript](https://www.typescriptlang.org/)
+* 📚 [VueUse](https://vueuse.org/)
+* 🧩 [Element Plus](https://element-plus.org/zh-CN/)
 
 ## 插件
-* [vite-plugin-eslint](https://github.com/gxmari007/vite-plugin-eslint) - Vite 的 ESLint 插件。
+* [vite-plugin-eslint](https://github.com/gxmari007/vite-plugin-eslint) - Vite 的 ESLint 插件
 * [vite-plugin-compression](https://github.com/vbenjs/vite-plugin-compression) - 使用gzip压缩资源
+
+* [unplugin-auto-import](https://github.com/unplugin/unplugin-auto-import) - 按需自动导入
+* [unplugin-vue-components](https://github.com/unplugin/unplugin-vue-components) - Vue 的按需组件自动导入
+
+* [husky](https://typicode.github.io/husky/) - git hook
+    * [lint-staged](https://github.com/okonet/lint-staged) - 针对暂存的git文件运行linter
 
 ## 编码风格
 * [ESLint](https://eslint.org/)
-  * @ecomfe/eslint-config（peer的eslint-plugin-vue没有升级到最新暂时不用）
-  * standard-with-typescript（暂用）
+  * @ecomfe/eslint-config
+  * standard-with-typescript
   * prettier
 
 ## 使用
