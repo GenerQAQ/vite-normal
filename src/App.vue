@@ -1,16 +1,31 @@
 <script setup lang="ts">
-import { ref } from 'vue';
 import { Sunny, Moon, Calendar } from '@element-plus/icons-vue';
 import { isDark, toggleDark } from '@/utils/dark';
 import { dayjs } from 'element-plus';
 
+import { getUser } from '@/api/modules/user';
+
 import zhCn from 'element-plus/es/locale/lang/zh-cn';
 
 const day = ref(dayjs().add(1, 'month').startOf('month'));
+
+const name = ref('');
+
+const init = async () => {
+    const { code, data } = await getUser();
+    if (code === 0) {
+        name.value = data.name;
+    }
+};
+
+onMounted(() => {
+    ElMessage.success('Welcome to this template!');
+    init();
+});
 </script>
 
 <template>
-    <el-config-provider :locale="zhCn">
+    <el-config-provider :locale="zhCn" size="small">
         <div>
             <a href="https://vitejs.dev" target="_blank" rel="noopener noreferrer">
                 <img src="/vite.svg" class="logo" alt="Vite logo" />
@@ -36,7 +51,7 @@ const day = ref(dayjs().add(1, 'month').startOf('month'));
             </template>
         </el-countdown>
         <div class="countdown-footer">{{ day.format('YYYY-MM-DD') }}</div>
-        <el-table mb-1 :data="[]" />
+        <el-tag>{{ name }}</el-tag>
     </el-config-provider>
 </template>
 

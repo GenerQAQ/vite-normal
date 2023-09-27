@@ -1,6 +1,7 @@
 import { defineConfig, loadEnv } from 'vite';
 import vue from '@vitejs/plugin-vue';
 import compressionPlugin from 'vite-plugin-compression';
+import { viteMockServe } from 'vite-plugin-mock';
 import path, { resolve } from 'path';
 import autoImport from 'unplugin-auto-import/vite';
 import components from 'unplugin-vue-components/vite';
@@ -28,7 +29,14 @@ export default defineConfig(({ mode }) => {
         },
         plugins: [
             vue(),
+            viteMockServe({
+                localEnabled: mode === 'development' // 在开发环境开启mock
+            }),
             autoImport({
+                imports: ['vue', 'pinia', 'vue-router', '@vueuse/core'],
+                eslintrc: {
+                    enabled: true
+                },
                 resolvers: [elementPlusResolver()]
             }),
             components({

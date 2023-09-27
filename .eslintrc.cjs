@@ -14,7 +14,7 @@ module.exports = {
         withDefaults: true
     },
     extends: [
-        'standard-with-typescript',
+        './.eslintrc-auto-import.json',
         '@ecomfe/eslint-config',
         '@ecomfe/eslint-config/vue/strict',
         'plugin:vue/vue3-essential',
