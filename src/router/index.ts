@@ -5,7 +5,9 @@ const routes: Array<RouteRecordRaw> = [
     {
         path: '/',
         name: 'Home',
-        title: '测试首页',
+        meta: {
+            title: '测试首页'
+        },
         component: () => import('@/views/Home/index.vue')
     }
 ];
@@ -25,8 +27,9 @@ const router: Router = createRouter({
 
 // 全局路由前置守卫，在进入路由前触发，导航在所有守卫 resolve 完之前一直处于等待中。
 router.beforeEach((to, from) => {
+    console.log('全局路由前置守卫: to - from', to, from);
     // 设置页面标题
-    document.title = (to.meta.title as string) || import.meta.env.VITE_APP_TITLE;
+    document.title = to.meta.title ?? import.meta.env.VITE_APP_TITLE;
     // 路由进度开始
     if (!NProgress.isStarted()) {
         NProgress.start();
@@ -35,6 +38,7 @@ router.beforeEach((to, from) => {
 
 // 全局路由后置守卫
 router.afterEach((to, from) => {
+    console.log('全局路由后置守卫: to - from', to, from);
     // 路由进度结束
     NProgress.done();
 });

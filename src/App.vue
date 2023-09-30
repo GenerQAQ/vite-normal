@@ -1,8 +1,6 @@
 <script setup lang="ts">
 import { useUserStore } from '@/store/user';
-
 import { getUser } from '@/api/modules/user';
-
 import zhCn from 'element-plus/es/locale/lang/zh-cn';
 
 const store = useUserStore();

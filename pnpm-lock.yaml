@@ -52,6 +52,9 @@ devDependencies:
   '@types/node':
     specifier: ^20.7.0
     version: 20.7.0
+  '@types/nprogress':
+    specifier: ^0.2.1
+    version: 0.2.1
   '@typescript-eslint/eslint-plugin':
     specifier: ^6.7.3
     version: 6.7.3(@typescript-eslint/parser@6.7.3)(eslint@8.50.0)(typescript@5.2.2)
@@ -906,6 +909,10 @@ packages:
 
   /@types/normalize-package-data@2.4.2:
     resolution: {integrity: sha512-lqa4UEhhv/2sjjIQgjX8B+RBjj47eo0mzGasklVJ78UKGQY1r0VpB9XHDaZZO9qzEFDdy4MrXLuEaSmPrPSe/A==}
+    dev: true
+
+  /@types/nprogress@0.2.1:
+    resolution: {integrity: sha512-TYuyVnp+nOnimgdOydDIDYIxv2kSeuJZw4tF0p/KG7hpzcMF1WkHaREwM8O4blqfT1F7rq0nht6Ko2KVUfWzBA==}
     dev: true
 
   /@types/resolve@1.17.1:
@@ -4692,7 +4699,7 @@ packages:
     dependencies:
       htmlparser2: 3.10.1
       postcss: 7.0.39
-      postcss-syntax: 0.36.2(postcss-html@1.5.0)(postcss@7.0.39)
+      postcss-syntax: 0.36.2(postcss-html@1.5.0)(postcss@8.4.30)
     dev: true
 
   /postcss-html@1.5.0:
@@ -4713,7 +4720,7 @@ packages:
     dependencies:
       '@babel/core': 7.23.0
       postcss: 7.0.39
-      postcss-syntax: 0.36.2(postcss-html@1.5.0)(postcss@7.0.39)
+      postcss-syntax: 0.36.2(postcss-html@1.5.0)(postcss@8.4.30)
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -4732,7 +4739,7 @@ packages:
       postcss-syntax: '>=0.36.0'
     dependencies:
       postcss: 7.0.39
-      postcss-syntax: 0.36.2(postcss-html@1.5.0)(postcss@7.0.39)
+      postcss-syntax: 0.36.2(postcss-html@1.5.0)(postcss@8.4.30)
       remark: 10.0.1
       unist-util-find-all-after: 1.0.5
     dev: true
@@ -4810,7 +4817,7 @@ packages:
       postcss: 7.0.39
     dev: true
 
-  /postcss-syntax@0.36.2(postcss-html@1.5.0)(postcss@7.0.39):
+  /postcss-syntax@0.36.2(postcss-html@1.5.0)(postcss@8.4.30):
     resolution: {integrity: sha512-nBRg/i7E3SOHWxF3PpF5WnJM/jQ1YpY9000OaVXlAQj6Zp/kIqJxEDWIZ67tAd7NLuk7zqN4yqe9nc0oNAOs1w==}
     peerDependencies:
       postcss: '>=5.0.0'
@@ -4831,7 +4838,7 @@ packages:
       postcss-scss:
         optional: true
     dependencies:
-      postcss: 7.0.39
+      postcss: 8.4.30
       postcss-html: 1.5.0
     dev: true
 
@@ -5743,7 +5750,7 @@ packages:
       postcss-sass: 0.3.5
       postcss-scss: 2.1.1
       postcss-selector-parser: 3.1.2
-      postcss-syntax: 0.36.2(postcss-html@1.5.0)(postcss@7.0.39)
+      postcss-syntax: 0.36.2(postcss-html@1.5.0)(postcss@8.4.30)
       postcss-value-parser: 3.3.1
       resolve-from: 4.0.0
       signal-exit: 3.0.7
