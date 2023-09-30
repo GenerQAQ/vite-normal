@@ -29,6 +29,12 @@ module.exports = {
             parserOptions: {
                 sourceType: 'script'
             }
+        },
+        {
+            files: ['src/views/**/*.vue'],
+            rules: {
+                'vue/multi-word-component-names': 'off'
+            }
         }
     ],
     parserOptions: {
