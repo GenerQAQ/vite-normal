@@ -3,31 +3,46 @@
 * 👍 [TypeScript](https://www.typescriptlang.org/)
 * 📚 [VueUse](https://vueuse.org/)
 * 🧩 [Element Plus](https://element-plus.org/zh-CN/)
+* 🔁 [Axios](https://axios-http.com/zh/)
+* 🍍 [Pinia](https://pinia.vuejs.org/)
+* 🚦 [Vue Router](https://router.vuejs.org/)
+* 🌡️ [NProgress](https://rstacruz.github.io/nprogress/)
 
 ## 插件
 * [vite-plugin-eslint](https://github.com/gxmari007/vite-plugin-eslint) - Vite 的 ESLint 插件
-* [vite-plugin-compression](https://github.com/vbenjs/vite-plugin-compression) - 使用gzip压缩资源
+* [vite-plugin-compression](https://github.com/vbenjs/vite-plugin-compression) - 使用 gzip 压缩资源
+* [vite-plugin-mock](https://github.com/vbenjs/vite-plugin-mock/tree/main#readme) - Mock 接口插件
 
 * [unplugin-auto-import](https://github.com/unplugin/unplugin-auto-import) - 按需自动导入
 * [unplugin-vue-components](https://github.com/unplugin/unplugin-vue-components) - Vue 的按需组件自动导入
 
 * [husky](https://typicode.github.io/husky/) - git hook
     * [lint-staged](https://github.com/okonet/lint-staged) - 针对暂存的git文件运行linter
+    * [stylelint](https://stylelint.io/) - 强大的 CSS linter 可以帮助您避免错误并强制执行约定
+
+* [Visuallize](https://github.com/btd/rollup-plugin-visualizer) - 可视化您的bundle
 
 ## 编码风格
 * [ESLint](https://eslint.org/)
   * @ecomfe/eslint-config
-  * standard-with-typescript
   * prettier
+* [Stylelint](https://stylelint.io/)
+  * @ecomfe/stylelint-config
 
 ## 使用
+
+```bash
+git clone https://github.com/GenerQAQ/vite-normal.git my-vite-app
+cd my-vite-app
+pnpm i
+```
 
 ### 开发
 
 只需要执行以下命令就可以在终端中看到Local地址
 
 ```bash
-pnpm run dev
+pnpm dev
 ```
 
 ### 构建
@@ -35,11 +50,13 @@ pnpm run dev
 构建该应用只需要执行以下命令
 
 ```bash
-pnpm run build
+pnpm build
 ```
 
 然后你会看到用于发布的 `dist` 文件夹被生成
+`stats.html`是打包文件内容分析
 
----
-
-<center>未完待续</center>
+### Todo List
+- [ ] [Vitest](https://cn.vitest.dev/) 单元测试框架
+- [ ] Vite 打包 chunk 优化 分依赖打包
+- [ ] @vitejs/plugin-legacy 兼容性插件
