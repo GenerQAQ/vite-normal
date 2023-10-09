@@ -63,5 +63,5 @@ pnpm build
 
 ### Todo List
 - [x] [Vitest](https://cn.vitest.dev/) 单元测试框架
-- [ ] Vite 打包 chunk 优化 分依赖打包
+- [x] Vite 打包 chunk 优化 分依赖打包
 - [ ] @vitejs/plugin-legacy 兼容性插件

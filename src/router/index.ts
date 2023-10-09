@@ -18,6 +18,7 @@ const router: Router = createRouter({
     linkActiveClass: 'active',
     // 刷新后滚动事件
     scrollBehavior(to, from, savedPosition) {
+        console.log('切换路由: to - from', to, from);
         if (savedPosition) {
             return savedPosition;
         }
