@@ -27,8 +27,7 @@
         // 非相对模块导入的路径映射配置
         "paths": {
             "@/*": ["src/*"]
-        },
-        "types": ["element-plus/global.d.ts"]
+        }
     },
     // 编译器默认排除的编译文件
     "exclude": ["node_modules"],

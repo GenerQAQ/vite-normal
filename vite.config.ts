@@ -33,7 +33,7 @@ export default defineConfig(({ mode }) => {
                 localEnabled: mode === 'development' // 在开发环境开启mock
             }),
             autoImport({
-                imports: ['vue', 'pinia', 'vue-router', '@vueuse/core'],
+                imports: ['vue', 'pinia', 'vue-router', '@vueuse/core', 'vitest'],
                 eslintrc: {
                     enabled: true
                 },
@@ -66,6 +66,13 @@ export default defineConfig(({ mode }) => {
                     ws: true, // 用于代理 WS(S) 请求
                     rewrite: (path) => path.replace(env.VITE_APP_BASE_API, '')
                 }
+            }
+        },
+        test: {
+            globals: true,
+            environment: 'jsdom',
+            deps: {
+                inline: ['element-plus']
             }
         },
         build: {

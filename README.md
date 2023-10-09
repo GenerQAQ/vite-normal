@@ -29,6 +29,11 @@
 * [Stylelint](https://stylelint.io/)
   * @ecomfe/stylelint-config
 
+## 单元测试
+* [Vitest](https://cn.vitest.dev/) - 一个 Vite 原生的单元测试框架
+  * [jsdom](https://github.com/jsdom/jsdom) - 模拟 DOM 和浏览器 API
+  * [Vue Test Utils](https://test-utils.vuejs.org/) - Vue 3 的官方测试套件
+
 ## 使用
 
 ```bash
@@ -57,6 +62,6 @@ pnpm build
 `stats.html`是打包文件内容分析
 
 ### Todo List
-- [ ] [Vitest](https://cn.vitest.dev/) 单元测试框架
+- [x] [Vitest](https://cn.vitest.dev/) 单元测试框架
 - [ ] Vite 打包 chunk 优化 分依赖打包
 - [ ] @vitejs/plugin-legacy 兼容性插件
