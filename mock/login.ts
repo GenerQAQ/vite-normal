@@ -1,9 +1,11 @@
 import Mock from 'mockjs';
 
+const BASE_API = '/dev-api';
+
 export default [
     // 模块接口
     {
-        url: '/dev-api/login',
+        url: `${BASE_API}/login`,
         method: 'GET',
         timeout: '500',
         response: () => {
