@@ -2,6 +2,7 @@ import { defineConfig, loadEnv } from 'vite';
 import vue from '@vitejs/plugin-vue';
 import compressionPlugin from 'vite-plugin-compression';
 import { viteMockServe } from 'vite-plugin-mock';
+import legacy from '@vitejs/plugin-legacy';
 import path, { resolve } from 'path';
 import autoImport from 'unplugin-auto-import/vite';
 import components from 'unplugin-vue-components/vite';
@@ -41,6 +42,9 @@ export default defineConfig(({ mode }) => {
             }),
             components({
                 resolvers: [elementPlusResolver()]
+            }),
+            legacy({
+                targets: ['defaults', 'not IE 11']
             }),
             compressionPlugin({
                 verbose: true, // 输出压缩成功
@@ -92,16 +96,16 @@ export default defineConfig(({ mode }) => {
                     },
                     // 用于从入口点创建的块的打包输出格式[name]表示文件名,[hash]表示该文件内容hash值
                     entryFileNames: 'js/[name].[hash].js',
-                    // 用于命名代码拆分时创建的共享块的输出命名
-                    chunkFileNames: 'js/[name].[hash].js',
                     // 用于输出静态资源的命名，[ext]表示文件扩展名
-                    assetFileNames: '[ext]/[name].[hash].[ext]'
+                    assetFileNames: '[ext]/[name].[hash].[ext]',
                     // 拆分js到模块文件夹
-                    // chunkFileNames: (chunkInfo) => {
-                    //     const facadeModuleId = chunkInfo.facadeModuleId ? chunkInfo.facadeModuleId.split('/') : [];
-                    //     const fileName = facadeModuleId[facadeModuleId.length - 2] || '[name]';
-                    //     return `js/${fileName}/[name].[hash].js`;
-                    // },
+                    chunkFileNames: (chunkInfo) => {
+                        const facadeModuleId = chunkInfo.facadeModuleId
+                            ? chunkInfo.facadeModuleId.split(path.normalize('/'))
+                            : [];
+                        const fileName = facadeModuleId[facadeModuleId.length - 2] || '[name]';
+                        return path.normalize(`js/${fileName}/[name].[hash].js`);
+                    }
                 }
             }
         },
