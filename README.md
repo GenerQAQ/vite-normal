@@ -1,3 +1,6 @@
+<div align=center style="font-size: 100px">🗿</div>
+<div align=center style="font-weight: bold">NORMAL 模版</div>
+
 ## 配置
 * 🚀 [Vue 3](https://cn.vuejs.org/)，[Vite 4](https://cn.vitejs.dev/)，[PNPM](https://pnpm.io/)
 * 👍 [TypeScript](https://www.typescriptlang.org/)
@@ -62,6 +65,4 @@ pnpm build
 `stats.html`是打包文件内容分析
 
 ### Todo List
-- [x] [Vitest](https://cn.vitest.dev/) 单元测试框架
-- [x] Vite 打包 chunk 优化 分依赖打包
-- [x] @vitejs/plugin-legacy 兼容性插件
+- [ ] 首页展示页面
