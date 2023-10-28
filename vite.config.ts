@@ -28,6 +28,16 @@ export default defineConfig(({ mode }) => {
                 '@': resolve(__dirname, './src') // 把 @ 指向到 src 目录去
             }
         },
+        css: {
+            preprocessorOptions: {
+                scss: {
+                    additionalData: `
+                        @use '@/styles/element/light.scss';
+                        @use '@/styles/element/dark.scss';
+                    `
+                }
+            }
+        },
         plugins: [
             vue(),
             viteMockServe({
@@ -38,10 +48,18 @@ export default defineConfig(({ mode }) => {
                 eslintrc: {
                     enabled: true
                 },
-                resolvers: [elementPlusResolver()]
+                resolvers: [
+                    elementPlusResolver({
+                        importStyle: 'sass'
+                    })
+                ]
             }),
             components({
-                resolvers: [elementPlusResolver()]
+                resolvers: [
+                    elementPlusResolver({
+                        importStyle: 'sass'
+                    })
+                ]
             }),
             legacy({
                 targets: ['defaults', 'not IE 11']
