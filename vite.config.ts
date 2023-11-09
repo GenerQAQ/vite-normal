@@ -2,6 +2,7 @@ import { defineConfig, loadEnv } from 'vite';
 import vue from '@vitejs/plugin-vue';
 import compressionPlugin from 'vite-plugin-compression';
 import { viteMockServe } from 'vite-plugin-mock';
+import { chunkSplitPlugin } from 'vite-plugin-chunk-split';
 import legacy from '@vitejs/plugin-legacy';
 import path, { resolve } from 'path';
 import autoImport from 'unplugin-auto-import/vite';
@@ -61,6 +62,15 @@ export default defineConfig(({ mode }) => {
                     })
                 ]
             }),
+            chunkSplitPlugin({
+                strategy: 'default',
+                customSplitting: {
+                    __commonjsHelpers__: [/some unreachable check/], // override
+                    vendor: [/node_modules/],
+                    vue: [/vue/, /vue-router/],
+                    common: [/src\/utils/, /src\/components/]
+                }
+            }),
             legacy({
                 targets: ['defaults', 'not IE 11']
             }),
@@ -98,34 +108,7 @@ export default defineConfig(({ mode }) => {
             }
         },
         build: {
-            outDir: path.normalize(`./dist/${DIRNAME}`), // 指定输出路径（相对于项目根目录)
-            rollupOptions: {
-                output: {
-                    // 最小化拆分包
-                    manualChunks: (id) => {
-                        const replace = id.replace(path.normalize('node_modules/.pnpm/'), '');
-                        if (replace.includes('node_modules')) {
-                            return replace
-                                .toString()
-                                .split(path.normalize('node_modules/'))[1]
-                                .split(path.normalize('/'))[0]
-                                .toString();
-                        }
-                    },
-                    // 用于从入口点创建的块的打包输出格式[name]表示文件名,[hash]表示该文件内容hash值
-                    entryFileNames: 'js/[name].[hash].js',
-                    // 用于输出静态资源的命名，[ext]表示文件扩展名
-                    assetFileNames: '[ext]/[name].[hash].[ext]',
-                    // 拆分js到模块文件夹
-                    chunkFileNames: (chunkInfo) => {
-                        const facadeModuleId = chunkInfo.facadeModuleId
-                            ? chunkInfo.facadeModuleId.split(path.normalize('/'))
-                            : [];
-                        const fileName = facadeModuleId[facadeModuleId.length - 2] || '[name]';
-                        return path.normalize(`js/${fileName}/[name].[hash].js`);
-                    }
-                }
-            }
+            outDir: path.normalize(`./dist/${DIRNAME}`) // 指定输出路径（相对于项目根目录)
         },
         esbuild: {
             drop: mode === 'production' ? ['console', 'debugger'] : [] // 删除 console.* debugger; 函数的调用
