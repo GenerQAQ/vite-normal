@@ -313,6 +313,7 @@
     "vi": true,
     "vitest": true,
     "injectLocal": true,
-    "provideLocal": true
+    "provideLocal": true,
+    "useClipboardItems": true
   }
 }
