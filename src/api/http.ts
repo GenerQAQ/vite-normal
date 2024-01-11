@@ -2,12 +2,13 @@ import axios, { type AxiosError, type AxiosInstance, type InternalAxiosRequestCo
 import showCodeMessage from '@/api/code';
 import { formatJsonToUrlParams, type instanceObject } from '@/utils/format';
 
+const BASE_URL = import.meta.env.BASE_URL;
 const BASE_PREFIX = import.meta.env.VITE_APP_BASE_API;
 
 // 创建实例
 const axiosInstance: AxiosInstance = axios.create({
     // 前缀
-    baseURL: BASE_PREFIX,
+    baseURL: BASE_URL + BASE_PREFIX,
     // 超时
     timeout: 1000 * 30,
     // 请求头
