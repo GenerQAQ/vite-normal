@@ -17,6 +17,7 @@ jobs:
           npm install -g pnpm
           pnpm install
           pnpm build
+          rm -rf .gitignore
 
       - name: Deploy   # 部署
         uses: JamesIves/github-pages-deploy-action@v4.3.3
