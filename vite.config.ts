@@ -47,7 +47,7 @@ export default defineConfig(({ mode }) => {
         plugins: [
             vue(),
             viteMockServe({
-                localEnabled: mode === 'development' // 在开发环境开启mock
+                enable: mode === 'development' // 在开发环境开启mock
             }),
             autoImport({
                 imports: ['vue', 'pinia', 'vue-router', '@vueuse/core', 'vitest'],
