@@ -9,6 +9,8 @@ import autoImport from 'unplugin-auto-import/vite';
 import components from 'unplugin-vue-components/vite';
 import { visualizer } from 'rollup-plugin-visualizer';
 import { ElementPlusResolver as elementPlusResolver } from 'unplugin-vue-components/resolvers';
+import tailwindcss from 'tailwindcss';
+import autoprefixer from 'autoprefixer';
 
 const DIRNAME = resolve('./').split(path.normalize('/')).pop(); // 根目录文件夹名称
 const HOST = '0.0.0.0';
@@ -37,6 +39,9 @@ export default defineConfig(({ mode }) => {
                         @use '@/styles/element/dark.scss';
                     `
                 }
+            },
+            postcss: {
+                plugins: [tailwindcss, autoprefixer]
             }
         },
         plugins: [
